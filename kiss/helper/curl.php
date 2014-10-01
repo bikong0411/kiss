@@ -251,7 +251,7 @@ class Curl
         }
         if (isset($opts["conf"]["proxy"]))
         {
-            curl_setopt($curl, CURLOPT_PROXY, "http://192.168.103.97:3128");
+            curl_setopt($curl, CURLOPT_PROXY, "http://192.168.101.111:3128");
         }
         if (substr($opts['dest'], 0, 5) === 'https')
         {
@@ -265,6 +265,9 @@ class Curl
             $dest_url = $opts['dest'];
             if (strpos($opts['dest'], "?"))
                 $dest_url = empty($opts['params']) ? $opts['dest'] : $opts['dest'] . '&' . http_build_query($opts['params']);
+            else
+                $dest_url = empty($opts['params']) ? $opts['dest'] : $opts['dest'] . '?' . http_build_query($opts['params']);
+                
 
             if (isset($_GET['man'])) echo http_build_query($opts['params']);
             curl_setopt($curl, CURLOPT_URL, $dest_url);
