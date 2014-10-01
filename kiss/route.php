@@ -25,12 +25,15 @@ class Route {
         }
         return self::$self;
     }
+    public function setDefaultModule($module) {
+        $this->_udi['module'] = $module;
+    }
 
     public function udi($param = '') {
         if(!$param) {
             return $this->_udi;
         }
-
+        $orign_udi = $this->_udi;
         if(is_array($param)) {
            foreach(array('module', 'controller', 'action') as $key) {
                if(isset($param[$key])) {
@@ -42,19 +45,19 @@ class Route {
             $ary = explode("/", $param);
             array_shift($ary);
             switch(count($ary)) {
-                case 3:
+                case 4:
                     list($this->_udi['module'], $this->_udi['controller'], $this->_udi['action']) = $ary;
                     break;
-                case 2:
+                case 3:
                     list($this->_udi['controller'], $this->_udi['action']) = $ary;
                     break;
-                case 1:
+                case 2:
                     $this->_udi['action'] = $ary;
             }
         }
         foreach($this->_udi as $key => $value) {
             if(!$value) {
-                $this->_udi[$key] = 'keys';
+                $this->_udi[$key] = $orign_udi[$key];
             }
         }
     }
