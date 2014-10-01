@@ -40,6 +40,7 @@ class Route {
         } elseif (is_string($param)) {
             $param = str_replace("//", "/", $param);
             $ary = explode("/", $param);
+            array_shift($ary);
             switch(count($ary)) {
                 case 3:
                     list($this->_udi['module'], $this->_udi['controller'], $this->_udi['action']) = $ary;
