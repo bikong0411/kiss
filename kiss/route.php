@@ -45,13 +45,13 @@ class Route {
             $ary = explode("/", $param);
             array_shift($ary);
             switch(count($ary)) {
-                case 4:
+                case 3:
                     list($this->_udi['module'], $this->_udi['controller'], $this->_udi['action']) = $ary;
                     break;
-                case 3:
+                case 2:
                     list($this->_udi['controller'], $this->_udi['action']) = $ary;
                     break;
-                case 2:
+                case 1:
                     $this->_udi['action'] = $ary;
             }
         }
