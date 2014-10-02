@@ -22,16 +22,25 @@ class Context {
         return self::$self;
     }
 
-    public function get($key, $default = '')  {
+    public function get($key = '', $default = '')  {
+        if(!$key) {
+            return $_GET;
+        }
         return isset($_GET[$key])? $_GET[$key] : $default;
     }
 
-    public function post($key, $default = '') {
+    public function post($key = '', $default = '') {
+        if(!$key) {
+            return $_POST;
+        }
         return isset($_POST[$key])? $_POST[$key] : $default;
     }
 
     public function input($key, $default = '') {
         $input = file_get_contents("php://stdin");
+        if(!$key) {
+            return $input;
+        }
         return isset($input[$key]) ? $input[$key] : $default;
     }
 
