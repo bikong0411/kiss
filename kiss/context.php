@@ -74,6 +74,7 @@ class Context {
     }
 
     public function header($key) {
+        $key = strtoupper($key);
         return isset($_SERVER["HTTP_$key"])? $_SERVER["HTTP_$key"] : null;
     }
 
