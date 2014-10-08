@@ -20,9 +20,14 @@ class App extends \kiss\Application {
         $this->autoLoad();
         $this->_route_rule = require __DIR__."/conf/route.conf.php";
         $this->setDocumentRoot(__DIR__);
+        $this->_set_app_namespace("keys");
         $this->init();
     }
-
+    
+    private function _set_app_namespace($namespace) {
+        $this->_app_namespace = $namespace;
+    }
+    
     protected function _access_control() {
         return true;
     }
