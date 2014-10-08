@@ -6,7 +6,7 @@
  * Date: 14-10-1
  * Time: 21:32
  */
-namespace credit\keys;
+namespace keys\keys;
 use kiss\Controller;
 
 class Keys extends Controller{
