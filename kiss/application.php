@@ -18,6 +18,7 @@ class Application {
     private  $_autoLoad_namespace = array('kiss' => __DIR__);
     protected $_route_rule = array();
     private  $_document_root = __DIR__;
+    protected $_app_namespace;
 
     public function  __construct() {
         $this->autoLoad();
@@ -64,7 +65,7 @@ class Application {
 
         $file = $this->_document_root."/".$udi['module']."/".$udi['controller'].".php";
         if(is_file($file)) {
-            $class = "\\credit\\{$udi['module']}\\".ucfirst($udi['controller']);
+            $class = "\\{$this->_app_namespace}\\{$udi['module']}\\".ucfirst($udi['controller']);
             $cls = new $class();
             $method = "{$udi['action']}Action";
             if(method_exists($cls, $method)) {
@@ -86,7 +87,7 @@ class Application {
 
         $file = $this->_document_root."/".$udi['module']."/".$udi['controller'].".php";
         if(is_file($file)) {
-            $class = "\\credit\\{$udi['module']}\\".ucfirst($udi['controller']);
+            $class = "\\{$this->_app_namespace}\\{$udi['module']}\\".ucfirst($udi['controller']);
             $cls = new $class();
             $method = "{$udi['action']}Action";
             if(method_exists($cls, $method)) {
